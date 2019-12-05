@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import { environment } from '../environments/environment';
 
@@ -40,6 +41,7 @@ import { ClientService } from './services/client.service';
     NotFoundComponent
   ],
   imports: [
+    FlashMessagesModule.forRoot(),
     FormsModule,
     BrowserModule,
     AppRoutingModule,
