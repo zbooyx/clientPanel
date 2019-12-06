@@ -1,1 +1,19 @@
-<p>client-details works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back to Dashboard
+    </a>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group pull-right">
+      <a routerLink="/client/edit/{{id}}" class="btn btn-dark">
+        Edit
+      </a>
+      <button (click)="onDeleteClick()"
+              routerLink="/client/edit/{{id}}"
+              class="btn btn-danger">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
