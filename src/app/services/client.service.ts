@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { Client } from '../models/Client';
+import { Observable } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class ClientService {
@@ -12,7 +12,7 @@ export class ClientService {
   clients: Observable<Client[]>;
   client: Observable<Client>;
 
-  constructor(private readonly afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore) {
     this.clientsCollection = this.afs.collection('clients', ref => ref.orderBy('lastName', 'asc'));
   }
 
@@ -20,12 +20,16 @@ export class ClientService {
     this.clients = this.clientsCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(action => {
         const data = action.payload.doc.data() as Client;
-        const id = action.payload.doc.id;
+        data.id = action.payload.doc.id;
         return data;
       });
     }));
+
     return this.clients;
   }
 
+  newClient(client: Client) {
+    this.clientsCollection.add(client);
+  }
 
 }

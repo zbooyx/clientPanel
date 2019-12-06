@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { ClientService } from '../../services/client.service';
+import { Router } from '@angular/router';
+
 import { Client } from '../../models/Client';
-import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
 
 @Component({
   selector: 'app-add-client',
@@ -13,13 +16,17 @@ export class AddClientComponent implements OnInit {
     lastName: '',
     email: '',
     phone: '',
-    balance: 0,
+    balance: 0
   };
 
   disableBalanceOnAdd: boolean = false;
   @ViewChild('clientForm', {static: false}) from: any;
 
-  constructor(private flashMessage: FlashMessagesService) {
+  constructor(
+    private flashMessage: FlashMessagesService,
+    private clientService: ClientService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -31,17 +38,20 @@ export class AddClientComponent implements OnInit {
     }
 
     if (!valid) {
-      // show error
-      this.flashMessage.show('please fill form correctly', {
+      // Show error
+      this.flashMessage.show('Please fill out the form correctly', {
         cssClass: 'alert-danger', timeout: 4000
       });
     } else {
-      this.flashMessage.show('new client added', {
-        cssClass: 'alert-success', timeout: 1000
-        // Add n client
-        // show message
-        // redirect to dash
+      // Add new client
+      this.clientService.newClient(value);
+      // Show message
+      this.flashMessage.show('New client added', {
+        cssClass: 'alert-success', timeout: 4000
       });
+      // Redirect to dash
+      this.router.navigate(['/']);
     }
   }
+
 }
