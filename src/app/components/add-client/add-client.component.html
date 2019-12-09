@@ -20,7 +20,7 @@
                name="firstName"
                #clientFirstName="ngModel"
                [ngClass]="{'is-invalid': clientFirstName.errors && clientFirstName.touched}"
-               [(ngModel)]="firstName"
+               [(ngModel)]="client.firstName"
                minlength="2"
                required>
         <div [hidden]="!clientFirstName.errors?.required"
@@ -39,7 +39,7 @@
                name="lastName"
                #clientLastName="ngModel"
                [ngClass]="{'is-invalid': clientLastName.errors && clientLastName.touched}"
-               [(ngModel)]="lastName"
+               [(ngModel)]="client.lastName"
                minlength="2"
                required>
         <div [hidden]="!clientLastName.errors?.required"
@@ -58,7 +58,7 @@
                name="email"
                #clientEmail="ngModel"
                [ngClass]="{'is-invalid': clientEmail.errors && clientEmail.touched}"
-               [(ngModel)]="email"
+               [(ngModel)]="client.email"
                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                required>
         <div [hidden]="!clientEmail.errors?.required"
@@ -77,7 +77,7 @@
                name="phone"
                #clientPhone="ngModel"
                [ngClass]="{'is-invalid': clientPhone.errors && clientPhone.touched}"
-               [(ngModel)]="phone"
+               [(ngModel)]="client.phone"
                minlength="9"
                required>
         <div [hidden]="!clientPhone.errors?.required"
