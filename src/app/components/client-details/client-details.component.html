@@ -22,10 +22,31 @@
   <div class="card-body">
     <div class="row">
       <div class="card-md-8 col-sm-6">
-        <h4>client ID: {{client.id}}</h4>
+        <h5>client ID: {{client.id}}</h5>
       </div>
       <div class="card-md-8 col-sm-6">
-        <h5>Balance: {{client.balance}}</h5>
+        <h4 class="pull-right">Balance:
+          <span [class.text-danger]="hasBalance"
+                [class.text-success]="!hasBalance">
+
+          {{client.balance | currency: "PLN"}}
+        </span>
+          <small>
+            <a (click)="showBalanceUpdateInput=!showBalanceUpdateInput">
+              <i class="fa fa-pencil"></i>
+            </a>
+          </small>
+        </h4>
+        <div class="clearfix">
+          <form *ngIf="showBalanceUpdateInput" (submit)="updateBalance()">
+            <div class="input-group">
+              <input type="text" name="balance" class="form-control" [(ngModel)]="client.balance">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Update</button>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <hr>
