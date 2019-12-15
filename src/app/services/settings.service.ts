@@ -8,9 +8,9 @@ import { Settings } from '../models/Settings';
 export class SettingsService {
   settings: Settings = {
     allowRegistration: true,
-    disableRegistration: true,
-    disableBalanceOnAdd: true,
-    disableBalanceOnEdit: false
+    // disableRegistration: true,
+    disableBalanceOnAdd: false,
+    disableBalanceOnEdit: true
   };
 
 
