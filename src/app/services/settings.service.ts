@@ -9,7 +9,7 @@ export class SettingsService {
   settings: Settings = {
     allowRegistration: true,
     // disableRegistration: true,
-    disableBalanceOnAdd: false,
+    disableBalanceOnAdd: true,
     disableBalanceOnEdit: true
   };
 
